@@ -1,5 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
+import { Route } from 'react-router-dom'
 import { withStyles } from '@material-ui/core/styles'
 import AppBar from '@material-ui/core/AppBar'
 import Toolbar from '@material-ui/core/Toolbar'
@@ -24,25 +25,27 @@ const styles = {
 function Navbar(props) {
   const { classes } = props
   return (
-    <div className={classes.root}>
-      <AppBar position="static" color="default">
-        <Toolbar>
-          <IconButton className={classes.menuButton} aria-label="Menu">
-            <BrushIcon />
-          </IconButton>
-          <Typography variant="title" className={classes.flex}>
-            Home
-          </Typography>
-          <Button>About</Button>
-          <Button>Portfolio</Button>
-        </Toolbar>
-      </AppBar>
-    </div>
+    <Route render={({ history }) => (
+      <div className={classes.root}>
+        <AppBar position="static" color="default">
+          <Toolbar>
+            <IconButton className={classes.menuButton} aria-label="Menu">
+              <BrushIcon />
+            </IconButton>
+            <Typography variant="title" className={classes.flex}>
+              
+            </Typography>
+            <Button onClick={()=> history.push('/about')}>About</Button>
+            <Button onClick={()=> history.push('/portfolio')}>Portfolio</Button>
+          </Toolbar>
+        </AppBar>
+      </div>
+    )} />
   )
 }
 
 Navbar.propTypes = {
-  classes: PropTypes.object.isRequired,
+  classes: PropTypes.object.isRequired
 }
 
 export default withStyles(styles)(Navbar)
