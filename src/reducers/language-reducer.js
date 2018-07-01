@@ -8,7 +8,9 @@ const defaultState = ENGLISH_STATE
 const language = handleActions({
   [CHANGE_LOCALE]: (state, action) => {
     return update(state, {
-      localeId: { $set: action.payload }
+      localeId: { $set: action.payload.locale.localeId },
+      displayName: {$set: action.payload.locale.displayName},
+      messages: {$set: action.payload.locale.messages}
     })
   }
 }, defaultState)

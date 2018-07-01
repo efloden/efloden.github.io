@@ -1,5 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
+import { FormattedMessage } from 'react-intl'
 import { withStyles } from '@material-ui/core/styles'
 import Grid from '@material-ui/core/Grid'
 import Typography from '@material-ui/core/Typography'
@@ -27,10 +28,16 @@ function Home(props) {
     <Grid item xs={12}>
       <Paper>
         <Typography className={classes.intro} variant="display4">
-          {'Hello, I\'m Earl!'}
+          <FormattedMessage
+            id='app.header.greeting'
+            defaultMessage="Hello, I'm Earl!"
+          />
         </Typography>
         <Typography className={classes.subtitle} variant="display1" component="p">
-          Full Stack Dev | Open Source Enthusiast | Computer Whisperer
+          <FormattedMessage
+            id='app.header.subtitle'
+            defaultMessage="Full Stack Dev | Open Source Enthusiast | Computer Whisperer"
+          />
         </Typography>
         <div>
           <ul id='menu'>

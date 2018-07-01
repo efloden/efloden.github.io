@@ -3,11 +3,12 @@ import PropTypes from 'prop-types'
 import { Route } from 'react-router-dom'
 import { withStyles } from '@material-ui/core/styles'
 import AppBar from '@material-ui/core/AppBar'
+import Button from '@material-ui/core/Button'
+import BrushIcon from '@material-ui/icons/Brush'
 import Toolbar from '@material-ui/core/Toolbar'
 import Typography from '@material-ui/core/Typography'
-import Button from '@material-ui/core/Button'
 import IconButton from '@material-ui/core/IconButton'
-import BrushIcon from '@material-ui/icons/Brush'
+import LanguageSelect from '../../components/LanguageSelect'
 
 const styles = {
   root: {
@@ -35,6 +36,7 @@ function Navbar(props) {
             <Typography variant="title" className={classes.flex}>
               
             </Typography>
+            <LanguageSelect />
             <Button onClick={()=> history.push('/about')}>About</Button>
             <Button onClick={()=> history.push('/portfolio')}>Portfolio</Button>
           </Toolbar>
