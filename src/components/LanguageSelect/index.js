@@ -4,6 +4,7 @@ import { connect } from 'react-redux'
 import Button from '@material-ui/core/Button'
 import Menu from '@material-ui/core/Menu'
 import MenuItem from '@material-ui/core/MenuItem'
+import LanguageIcon from '@material-ui/icons/Language'
 import { setAppLocale } from '../../actions/language-actions'
 import Locales from '../../locales'
 
@@ -39,7 +40,7 @@ class LanguageSelect extends React.Component {
           aria-haspopup="true"
           onClick={this.handleClick}
         >
-          {locale && locale.displayName}
+          <LanguageIcon /> {locale.displayName}
         </Button>
         <Menu
           id="language-menu"

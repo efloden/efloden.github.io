@@ -2,7 +2,6 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import { FormattedMessage } from 'react-intl'
 import { withStyles } from '@material-ui/core/styles'
-import Grid from '@material-ui/core/Grid'
 import Typography from '@material-ui/core/Typography'
 import Paper from '@material-ui/core/Paper'
 import './index.css'
@@ -25,7 +24,7 @@ const styles = theme => ({
 function Home(props) {
   const { classes } = props
   return (
-    <Grid item xs={12}>
+    <React.Fragment>
       <Paper>
         <Typography className={classes.intro} variant="display4">
           <FormattedMessage
@@ -39,7 +38,7 @@ function Home(props) {
             defaultMessage="Full Stack Dev | Open Source Enthusiast | Computer Whisperer"
           />
         </Typography>
-        <div>
+        {/* <div>
           <ul id='menu'>
             <a className='menu-button icon-plus' href='#menu' title='Show navigation'></a>
             <a className='menu-button icon-minus' href='#0' title='Hide navigation'></a>
@@ -64,9 +63,9 @@ function Home(props) {
               </a>
             </li>
           </ul>
-        </div>
+        </div> */}
       </Paper>
-    </Grid>
+    </React.Fragment>
   )
 }
 
