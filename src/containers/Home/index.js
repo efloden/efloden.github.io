@@ -29,7 +29,7 @@ function Home(props) {
         <Typography className={classes.intro} variant="display4">
           <FormattedMessage
             id='app.header.greeting'
-            defaultMessage="Hello, I'm Earl!"
+            defaultMessage="I'm Earl."
           />
         </Typography>
         <Typography className={classes.subtitle} variant="display1" component="p">
