@@ -1,12 +1,19 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import { Route } from 'react-router-dom'
+import { withRouter } from 'react-router'
 import { withStyles } from '@material-ui/core/styles'
 import BottomNavigation from '@material-ui/core/BottomNavigation'
 import BottomNavigationAction from '@material-ui/core/BottomNavigationAction'
 import HomeIcon from '@material-ui/icons/Home'
 import InfoIcon from '@material-ui/icons/Info'
 import FolderSpecialIcon from '@material-ui/icons/FolderSpecial'
+
+const pageNumber = {
+  '/': 0,
+  '/about': 1,
+  '/portfolio': 2
+}
 
 const styles = {
   root: {
@@ -15,18 +22,19 @@ const styles = {
 }
 
 class SimpleBottomNavigation extends React.Component {
-  state = {
-    value: 0,
+  static propTypes = {
+    match: PropTypes.object.isRequired,
+    location: PropTypes.object.isRequired,
+    history: PropTypes.object.isRequired
   }
 
-  handleChange = (event, value) => {
-    this.setState({ value })
+  handleChange = () => {
+    // this.setState({ value })
   }
 
   render() {
-    const { classes } = this.props
-    const { value } = this.state
-
+    const { classes, location } = this.props
+    const value = pageNumber[location.pathname]
     return (
       <Route render={({ history }) => (
         <BottomNavigation
@@ -45,6 +53,7 @@ class SimpleBottomNavigation extends React.Component {
             onClick={()=> history.push('/portfolio')}
             label="Portfolio"
             icon={<FolderSpecialIcon />} />
+          {history.location.key}
         </BottomNavigation>
       )} />
     )
@@ -55,4 +64,4 @@ SimpleBottomNavigation.propTypes = {
   classes: PropTypes.object.isRequired,
 }
 
-export default withStyles(styles)(SimpleBottomNavigation)
+export default withStyles(styles)(withRouter(SimpleBottomNavigation))
