@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import About from './About'
 import BottomNav from './BottomNav'
 import Home from './Home'
-import Portfolio from './Portfolio'
+// import Portfolio from './Portfolio'
 import Navbar from './Navbar'
 import {
   BrowserRouter as Router,
@@ -20,8 +20,9 @@ class App extends Component {
           </header>
           <main>
             <Route component={Home}/>
-            <Route path='/about' component={About}/>
-            <Route path='/portfolio' component={Portfolio}/>
+            <About />
+            {/* <Route path='/about' component={About}/>
+            <Route path='/portfolio' component={Portfolio}/> */}
           </main>
           <footer>
             <BottomNav />

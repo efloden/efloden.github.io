@@ -5,9 +5,9 @@ import { withRouter } from 'react-router'
 import { withStyles } from '@material-ui/core/styles'
 import BottomNavigation from '@material-ui/core/BottomNavigation'
 import BottomNavigationAction from '@material-ui/core/BottomNavigationAction'
-import HomeIcon from '@material-ui/icons/Home'
-import InfoIcon from '@material-ui/icons/Info'
-import FolderSpecialIcon from '@material-ui/icons/FolderSpecial'
+// import HomeIcon from '@material-ui/icons/'
+// import InfoIcon from '@material-ui/icons/Info'
+// import FolderSpecialIcon from '@material-ui/icons/FolderSpecial'
 
 const pageNumber = {
   '/': 0,
@@ -31,8 +31,24 @@ class SimpleBottomNavigation extends React.Component {
   handleChange = () => {
     // this.setState({ value })
   }
+  
+  openGithub = () => {
+    window.open('https://github.com/efloden')
+  }
+
+  openLinkedIn = () => {
+    window.open('https://linkedin.com/in/earlmarkfloden/')
+  }
+
+  openTwitter = () => {
+    window.open('https://twitter.com/exmark11/')
+  }
 
   render() {
+    // Override selected style
+    const style = {
+      color: 'rgba(0, 0, 0, 0.54)'
+    }
     const { classes, location } = this.props
     const value = pageNumber[location.pathname]
     return (
@@ -43,16 +59,32 @@ class SimpleBottomNavigation extends React.Component {
           showLabels
           className={classes.root}
         >
-          <BottomNavigationAction
+          {/* <BottomNavigationAction
             onClick={()=> history.push('/')}
             label="Home" icon={<HomeIcon />} />
           <BottomNavigationAction
             onClick={()=> history.push('/about')}
-            label="About" icon={<InfoIcon />} />
-          <BottomNavigationAction
+            label="About" icon={<InfoIcon />} /> */}
+          {/* <BottomNavigationAction
             onClick={()=> history.push('/portfolio')}
             label="Portfolio"
-            icon={<FolderSpecialIcon />} />
+            icon={<FolderSpecialIcon />} /> */}
+          <BottomNavigationAction
+            onClick={this.openLinkedIn}
+            style={style}
+            className={classes.root}
+            label="LinkedIn"
+            icon={<span className='fa fa-linkedin fa-2x'></span>} />
+          <BottomNavigationAction
+            onClick={this.openGithub}
+            style={style}
+            label="Github"
+            icon={<span className='fa fa-github fa-2x'></span>} />
+          <BottomNavigationAction
+            onClick={this.openTwitter}
+            style={style}
+            label="Twitter"
+            icon={<span className='fa fa-twitter fa-2x'></span>} />
           {history.location.key}
         </BottomNavigation>
       )} />

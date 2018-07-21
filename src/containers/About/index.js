@@ -34,7 +34,7 @@ function About(props) {
         <p>
           <FormattedMessage
             id='app.about.location'
-            defaultMessage="I'm a web developer based in Tokyo, Japan."
+            defaultMessage="I'm a full stack developer based in Tokyo, Japan."
           />
         </p>
         <p>
