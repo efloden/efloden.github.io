@@ -48,7 +48,7 @@ function Navbar(props) {
             {/* <Button className={classes.menuButton} aria-label="Menu" onClick={change}>
               <BrushIcon /> {currentTheme && currentTheme.palette.type}
             </Button> */}
-            <FontAwesomeIcon icon={faSun} transform="grow-3"/>
+            <FontAwesomeIcon icon={faSun} className='slow-spin' transform="grow-3"/>
             <Switch
               checked={switchValue}
               onChange={change}
@@ -56,7 +56,7 @@ function Navbar(props) {
               value="themeSwitch"
             />
             <span className="fa-layers fa-fw">
-              <FontAwesomeIcon icon={faCloud} color={currentTheme.cloud} transform="shrink-2 right-4 up-6"/>
+              <FontAwesomeIcon icon={faCloud} color={currentTheme.cloud} className='cloud-move' transform="shrink-2 right-4 up-6"/>
               <FontAwesomeIcon icon={faMoon} transform="grow-2" />
             </span>
             <Typography variant="title" className={classes.flex}>

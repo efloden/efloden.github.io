@@ -23,3 +23,26 @@ header, main, footer {
   max-width: 150px;
   border-radius: 50%;
 }
+
+.slow-spin {
+  -webkit-animation: fa-spin 6s infinite linear;
+  animation: fa-spin 6s infinite linear;
+}
+
+@keyframes rotate {
+	from {
+		transform: rotate(0deg)
+		           translate(-1px)
+		           rotate(0deg);
+	}
+	to {
+		transform: rotate(360deg)
+		           translate(-1px)
+		           rotate(-360deg);
+	}
+}
+
+.cloud-move {
+	position: absolute;
+	animation: rotate 3s infinite linear;
+}
