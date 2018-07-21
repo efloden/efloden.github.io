@@ -1,9 +1,14 @@
 import React, { Component } from 'react'
+import PropTypes from 'prop-types'
+import { connect } from 'react-redux'
+import { MuiThemeProvider } from '@material-ui/core/styles'
+import Themes from './Themes'
 import About from './About'
 import BottomNav from './BottomNav'
 import Home from './Home'
 // import Portfolio from './Portfolio'
 import Navbar from './Navbar'
+import { setAppTheme }  from '../actions/theme-actions'
 import {
   BrowserRouter as Router,
   Route
@@ -11,26 +16,53 @@ import {
 import './index.css'
 
 class App extends Component {
+  static propTypes = {
+    setTheme: PropTypes.func.isRequired,
+    muiTheme: PropTypes.any
+  }
+  constructor (props) {
+    super(props)
+  }
+  changeTheme = (theme) => {
+    this.props.setTheme(theme)
+  }
   render() {
+    const { muiTheme } = this.props
     return (
       <Router>
-        <article>
-          <header>
-            <Navbar />
-          </header>
-          <main>
-            <Route component={Home}/>
-            <About />
-            {/* <Route path='/about' component={About}/>
-            <Route path='/portfolio' component={Portfolio}/> */}
-          </main>
-          <footer>
-            <BottomNav />
-          </footer>
-        </article>
+        <MuiThemeProvider theme={muiTheme ? muiTheme : Themes.light}>
+          <article>
+            <header>
+              <Navbar changeTheme={this.changeTheme} currentTheme={muiTheme} />
+            </header>
+            <main>
+              <Route component={Home}/>
+              <About />
+              {/* <Route path='/about' component={About}/>
+              <Route path='/portfolio' component={Portfolio}/> */}
+            </main>
+            <footer>
+              <BottomNav />
+            </footer>
+          </article>
+        </MuiThemeProvider>
       </Router>
     )
   }
 }
 
-export default App
+const mapStateToProps = (state) => {
+  return { 
+    muiTheme: state.theme.muiTheme
+  }
+}
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    setTheme: (theme) => {
+      dispatch(setAppTheme(theme))
+    }
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(App)

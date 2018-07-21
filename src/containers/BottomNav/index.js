@@ -9,11 +9,11 @@ import BottomNavigationAction from '@material-ui/core/BottomNavigationAction'
 // import InfoIcon from '@material-ui/icons/Info'
 // import FolderSpecialIcon from '@material-ui/icons/FolderSpecial'
 
-const pageNumber = {
-  '/': 0,
-  '/about': 1,
-  '/portfolio': 2
-}
+// const pageNumber = {
+//   '/': 0,
+//   '/about': 1,
+//   '/portfolio': 2
+// }
 
 const styles = {
   root: {
@@ -46,15 +46,12 @@ class SimpleBottomNavigation extends React.Component {
 
   render() {
     // Override selected style
-    const style = {
-      color: 'rgba(0, 0, 0, 0.54)'
-    }
-    const { classes, location } = this.props
-    const value = pageNumber[location.pathname]
+    const { classes } = this.props // location
+    // const value = pageNumber[location.pathname]
     return (
       <Route render={({ history }) => (
         <BottomNavigation
-          value={value}
+          value={null}
           onChange={this.handleChange}
           showLabels
           className={classes.root}
@@ -71,18 +68,15 @@ class SimpleBottomNavigation extends React.Component {
             icon={<FolderSpecialIcon />} /> */}
           <BottomNavigationAction
             onClick={this.openLinkedIn}
-            style={style}
             className={classes.root}
             label="LinkedIn"
             icon={<span className='fa fa-linkedin fa-2x'></span>} />
           <BottomNavigationAction
             onClick={this.openGithub}
-            style={style}
             label="Github"
             icon={<span className='fa fa-github fa-2x'></span>} />
           <BottomNavigationAction
             onClick={this.openTwitter}
-            style={style}
             label="Twitter"
             icon={<span className='fa fa-twitter fa-2x'></span>} />
           {history.location.key}
