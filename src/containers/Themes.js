@@ -5,11 +5,13 @@ const Themes = {
     palette: {
       type: 'light',
     },
+    cloud: 'grey'
   }),
   dark: createMuiTheme({
     palette: {
       type: 'dark',
     },
+    cloud: 'grey'
   })
 }
 

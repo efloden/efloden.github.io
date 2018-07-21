@@ -20,9 +20,6 @@ class App extends Component {
     setTheme: PropTypes.func.isRequired,
     muiTheme: PropTypes.any
   }
-  constructor (props) {
-    super(props)
-  }
   changeTheme = (theme) => {
     this.props.setTheme(theme)
   }
@@ -31,7 +28,7 @@ class App extends Component {
     return (
       <Router>
         <MuiThemeProvider theme={muiTheme ? muiTheme : Themes.light}>
-          <article>
+          <article style={{backgroundColor: muiTheme.palette.background.default}}>
             <header>
               <Navbar changeTheme={this.changeTheme} currentTheme={muiTheme} />
             </header>
