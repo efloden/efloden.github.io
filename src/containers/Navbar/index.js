@@ -6,6 +6,7 @@ import Themes from '../../containers/Themes'
 import AppBar from '@material-ui/core/AppBar'
 // import Button from '@material-ui/core/Button'
 // import BrushIcon from '@material-ui/icons/Brush'
+import FormControlLabel from '@material-ui/core/FormControlLabel'
 import Switch from '@material-ui/core/Switch'
 import Toolbar from '@material-ui/core/Toolbar'
 import Typography from '@material-ui/core/Typography'
@@ -40,6 +41,12 @@ function Navbar(props) {
     ? currentTheme.palette.type === 'dark'
       ? true : false
     : false
+  const switchIcon = switchValue
+    ? <span className="fa-layers fa-fw">
+      <FontAwesomeIcon icon={faCloud} color={currentTheme.cloud} className='cloud-move' transform="shrink-2 right-4 up-6"/>
+      <FontAwesomeIcon icon={faMoon} transform="grow-2" />
+    </span>
+    : <FontAwesomeIcon icon={faSun} className='slow-spin' transform="grow-3"/>
   return (
     <Route render={({ history }) => (
       <div className={classes.root}>
@@ -48,17 +55,17 @@ function Navbar(props) {
             {/* <Button className={classes.menuButton} aria-label="Menu" onClick={change}>
               <BrushIcon /> {currentTheme && currentTheme.palette.type}
             </Button> */}
-            <FontAwesomeIcon icon={faSun} className='slow-spin' transform="grow-3"/>
-            <Switch
-              checked={switchValue}
-              onChange={change}
-              color="default"
-              value="themeSwitch"
+            <FormControlLabel
+              control={
+                <Switch
+                  checked={switchValue}
+                  onChange={change}
+                  color="default"
+                  value="themeSwitch"
+                />
+              }
+              label={switchIcon}
             />
-            <span className="fa-layers fa-fw">
-              <FontAwesomeIcon icon={faCloud} color={currentTheme.cloud} className='cloud-move' transform="shrink-2 right-4 up-6"/>
-              <FontAwesomeIcon icon={faMoon} transform="grow-2" />
-            </span>
             <Typography variant="title" className={classes.flex}>
               
             </Typography>
