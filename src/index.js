@@ -7,7 +7,7 @@ import registerServiceWorker from './registerServiceWorker'
 import ConnectedIntlProvider from './ConnectedIntlProvider'
 import rootReducer from './reducers/index'
 import reduxLogger from 'redux-logger'
-// import { CHANGE_LOCALE } from './actions/action-types'
+import { CHANGE_LOCALE } from './actions/action-types'
 import 'font-awesome/css/font-awesome.css'
 
 // Redux Beacon --->
@@ -19,7 +19,7 @@ import GoogleAnalytics, { trackEvent } from '@redux-beacon/google-analytics'
 // Redux Beacon --->
 
 const eventsMap = {
-  'CHANGE_LOCALE': trackEvent(action => ({
+  [CHANGE_LOCALE]: trackEvent(action => ({
     category: 'Locale',
     action: 'change',
     label: action.payload.locale.displayName
@@ -32,9 +32,10 @@ const gaMiddleware = createMiddleware(eventsMap, GoogleAnalytics(), {
   logger,
 })
 // <--- Redux Beacon
-
+const myInitialState = {}
 const store = createStore(
   rootReducer,
+  myInitialState,
   applyMiddleware(gaMiddleware, reduxLogger)
 )
 
