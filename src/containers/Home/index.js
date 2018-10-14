@@ -79,10 +79,9 @@ class Home extends Component {
         obfuscate: !prevState.obfuscate,
         current: shuffle(this.digest)[0]
       }))
-      // b.text(_ => this.state.current)
+      b.text(_ => this.state.current)
       this.state.obfuscate ? b.reveal(1000) : b.start()
     }, 3000)
-
   }
   render() {
     const { classes } = this.props
