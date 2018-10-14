@@ -9,6 +9,7 @@
     "@fortawesome/react-fontawesome": "^0.1.0-11",
     "@material-ui/core": "^3.0.1",
     "@material-ui/icons": "^3.0.1",
+    "baffle": "^0.3.6",
     "font-awesome": "^4.7.0",
     "gh-pages": "^1.2.0",
     "immutability-helper": "^2.7.1",
