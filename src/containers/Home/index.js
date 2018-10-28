@@ -1,7 +1,7 @@
 import React, {Component} from 'react'
 import PropTypes from 'prop-types'
 import baffle from 'baffle'
-import { FormattedMessage, injectIntl, defineMessages } from 'react-intl'
+import { FormattedMessage, injectIntl, defineMessages, intlShape } from 'react-intl'
 import { withStyles } from '@material-ui/core/styles'
 import Typography from '@material-ui/core/Typography'
 import Paper from '@material-ui/core/Paper'
@@ -21,41 +21,30 @@ const styles = theme => ({
     paddingBottom: '3rem'
   }
 })
-function shuffle(array) {
-  var currentIndex = array.length, temporaryValue, randomIndex
-  while (0 !== currentIndex) {
-    randomIndex = Math.floor(Math.random() * currentIndex)
-    currentIndex -= 1
-    temporaryValue = array[currentIndex]
-    array[currentIndex] = array[randomIndex]
-    array[randomIndex] = temporaryValue
-  }
-  return array
-}
-
 
 const messages = defineMessages({
   one: {
-    id: 'app.header.sub2',
+    id: 'app.header.sub1',
     defaultMessage: 'Night Owl',
   },
   two: {
-    id: 'app.header.sub3',
+    id: 'app.header.sub2',
     defaultMessage: 'Digital Designer',
   },
   three: {
-    id: 'app.header.sub4',
+    id: 'app.header.sub3',
     defaultMessage: 'Computer Whisperer',
   },
   four: {
-    id: 'app.header.sub5',
+    id: 'app.header.sub4',
     defaultMessage: 'ECMAScripter',
   },
 })
 
-
-
 class Home extends Component {
+  static propTypes = {
+    intl: intlShape
+  }
   digest = [
     this.props.intl.formatMessage(messages.one),
     this.props.intl.formatMessage(messages.two),
@@ -65,7 +54,7 @@ class Home extends Component {
   state = {
     update: true,
     obfuscate: true,
-    current: this.digest[0]
+    current: 0
   }
   componentDidMount() {
     let b = baffle('.baffle', {
@@ -73,14 +62,31 @@ class Home extends Component {
       speed: 150
     })
     b.start()
-    b.text(_ => this.state.current)
+    const setText = () => {
+      new Promise((resolve) => {
+        return resolve(this.setState((prevState) => ({
+          current: prevState.current === this.digest.length - 1 ? 0 : prevState.current + 1
+        })))
+      }).then(
+        // console.log('movingnext', this.state)
+        b.text(_ => this.digest[this.state.current])
+      )
+    }
+    const setObfuscate = () => {
+      new Promise((resolve) => {
+        return resolve(this.setState((prevState) => ({
+          obfuscate: !prevState.obfuscate
+        })))
+      }).then(
+        // console.log('obfuscating', this.state)
+        this.state.obfuscate ? b.reveal(1000) : b.start()
+      )
+    }
     setInterval(() => {
-      this.setState((prevState) => ({
-        obfuscate: !prevState.obfuscate,
-        current: shuffle(this.digest)[0]
-      }))
-      b.text(_ => this.state.current)
-      this.state.obfuscate ? b.reveal(1000) : b.start()
+      setObfuscate()
+    }, 1500)
+    setInterval(() => {
+      setText()
     }, 3000)
   }
   render() {
@@ -100,35 +106,8 @@ class Home extends Component {
               defaultMessage="Web Developer | Open Source Enthusiast | "
             />
             <br />
-            <span className='baffle'>___</span>
+            <span className='baffle'>________</span>
           </Typography>
-
-          {/* <div>
-            <ul id='menu'>
-              <a className='menu-button icon-plus' href='#menu' title='Show navigation'></a>
-              <a className='menu-button icon-minus' href='#0' title='Hide navigation'></a>
-              <li className='menu-item'>
-                <a href='https://github.com/efloden'>
-                  <span className='fa fa-github'></span>
-                </a>
-              </li>
-              <li className='menu-item'>
-                <a href='https://linkedin.com/in/earlmarkfloden/'>
-                  <span className='fa fa-linkedin'></span>
-                </a>
-              </li>
-              <li className='menu-item'>
-                <a href='https://twitter.com/exmark11'>
-                  <span className='fa fa-twitter'></span>
-                </a>
-              </li>
-              <li className='menu-item'>
-                <a href='#menu'>
-                  <span className='fa fa-instagram'></span>
-                </a>
-              </li>
-            </ul>
-          </div> */}
         </Paper>
       </React.Fragment>
     )
