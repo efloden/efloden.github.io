@@ -22,6 +22,7 @@ header, main, footer {
 .avatar {
   max-width: 150px;
   border-radius: 50%;
+  background-color: #fff;
 }
 
 .slow-spin {

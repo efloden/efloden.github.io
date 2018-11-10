@@ -4,7 +4,7 @@ import { FormattedMessage } from 'react-intl'
 import { withStyles } from '@material-ui/core/styles'
 import Grid from '@material-ui/core/Grid'
 import Paper from '@material-ui/core/Paper'
-import avatar from '../../assets/avatar.svg'
+import avatar from '../../assets/avatar-nakag.png'
 
 const styles = theme => ({
   root: {
