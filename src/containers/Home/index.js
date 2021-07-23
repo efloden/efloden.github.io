@@ -15,17 +15,23 @@ const styles = theme => ({
   },
   intro: {
     fontFamily: 'Reem Kufi, roboto',
-    paddingTop: '3rem'
+    paddingTop: '3rem',
+    [theme.breakpoints.down('sm')]: {
+      fontSize: '4rem',
+    },
   },
   subtitle: {
-    paddingBottom: '3rem'
+    paddingBottom: '3rem',
+    [theme.breakpoints.down('sm')]: {
+      fontSize: '1.2rem',
+    },
   }
 })
 
 const messages = defineMessages({
   one: {
     id: 'app.header.sub1',
-    defaultMessage: 'Night Owl',
+    defaultMessage: 'Game Developer',
   },
   two: {
     id: 'app.header.sub2',
